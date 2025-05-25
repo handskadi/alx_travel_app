@@ -1,11 +1,9 @@
 #!/bin/bash
 
-# Run this INSIDE ~/alx-2025/alx_travel_app
-
-mkdir -p listings
+mkdir -p alx_travel_app/listings
 
 # 1. requirement.txt
-cat > requirement.txt <<EOF
+cat > alx_travel_app/requirement.txt <<EOF
 django
 djangorestframework
 django-cors-headers
@@ -15,10 +13,10 @@ mysqlclient
 EOF
 
 # 2. listings/__init__.py
-touch listings/__init__.py
+touch alx_travel_app/listings/__init__.py
 
 # 3. settings.py
-cat > settings.py <<EOF
+cat > alx_travel_app/settings.py <<EOF
 import os
 import environ
 from pathlib import Path
@@ -98,7 +96,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EOF
 
 # 4. urls.py
-cat > urls.py <<EOF
+cat > alx_travel_app/urls.py <<EOF
 from django.contrib import admin
 from django.urls import path
 from rest_framework import permissions
@@ -121,4 +119,4 @@ urlpatterns = [
 ]
 EOF
 
-echo "✅ Files generated correctly inside: $(pwd)"
+echo "✅ Files created under alx_travel_app/ as expected."
