@@ -1,10 +1,11 @@
 #!/bin/bash
 
-mkdir -p alx_travel_app/alx_travel_app
-mkdir -p alx_travel_app/listings
+# Run this INSIDE ~/alx-2025/alx_travel_app
+
+mkdir -p listings
 
 # 1. requirement.txt
-cat > alx_travel_app/requirement.txt <<EOF
+cat > requirement.txt <<EOF
 django
 djangorestframework
 django-cors-headers
@@ -14,18 +15,18 @@ mysqlclient
 EOF
 
 # 2. listings/__init__.py
-touch alx_travel_app/listings/__init__.py
+touch listings/__init__.py
 
 # 3. settings.py
-cat > alx_travel_app/alx_travel_app/settings.py <<EOF
+cat > settings.py <<EOF
 import os
 import environ
 from pathlib import Path
 
 env = environ.Env()
-environ.Env.read_env(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
+environ.Env.read_env(os.path.join(Path(__file__).resolve().parent, '.env'))
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=True)
@@ -57,7 +58,7 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ROOT_URLCONF = 'alx_travel_app.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
@@ -75,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'alx_travel_app.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     'default': {
@@ -97,7 +98,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EOF
 
 # 4. urls.py
-cat > alx_travel_app/alx_travel_app/urls.py <<EOF
+cat > urls.py <<EOF
 from django.contrib import admin
 from django.urls import path
 from rest_framework import permissions
@@ -120,4 +121,4 @@ urlpatterns = [
 ]
 EOF
 
-echo "✅ Project structure and files created successfully!"
+echo "✅ Files generated correctly inside: $(pwd)"
